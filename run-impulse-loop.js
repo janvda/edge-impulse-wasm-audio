@@ -64,10 +64,12 @@ if (!process.argv[2]) {
 let classifier = new EdgeImpulseClassifier();
 classifier.init().then(() => {
     let classify_input = process.argv[2].trim().split(',').map(n => Number(n));
+    let result = null;
     for (i=0; i < 100000; i++) {
-    let result = classifier.classify(classify_input);
+       result = classifier.classify(classify_input);
     }
 
+    console.log("Ran classifier "  + i + " times and last classification = \n");
     console.log(result);
 }).catch(err => {
     console.error('Failed to initialize classifier', err);
