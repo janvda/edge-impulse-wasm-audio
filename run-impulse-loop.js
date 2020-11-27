@@ -63,9 +63,9 @@ if (!process.argv[2]) {
 // Initialize the classifier, and invoke with the argument passed in
 let classifier = new EdgeImpulseClassifier();
 classifier.init().then(() => {
-    let classify_input = process.argv[2].trim().split(',').map(n => Number(n));
+    let classify_input = process.argv[3].trim().split(',').map(n => Number(n));
     let result = null;
-    for (i=0; i < 100000; i++) {
+    for (i=0; i < Number(process.argv[2]); i++) {
        result = classifier.classify(classify_input);
     }
 
