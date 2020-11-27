@@ -66,6 +66,14 @@ classifier.init().then(() => {
     let classify_input = process.argv[3].trim().split(',').map(n => Number(n));
     let result = null;
     for (i=0; i < Number(process.argv[2]); i++) {
+       if ((i % 5000) == 0) {
+        console.log("\nRan classifier "  + i  + " times and memory usage is :");
+        // see https://www.valentinog.com/blog/node-usage/
+        const used = process.memoryUsage();
+        for (let key in used) {
+          console.log(`${key} ${Math.round(used[key] / 1024 / 1024 * 100) / 100} MB`);
+        }
+       }
        result = classifier.classify(classify_input);
     }
 
